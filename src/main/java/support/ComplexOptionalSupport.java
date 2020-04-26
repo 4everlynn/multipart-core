@@ -83,6 +83,14 @@ public interface ComplexOptionalSupport<K> {
      * @return target entity
      */
     default <T> T get(Class<T> tClass) {
+        if (null == tClass) {
+            return null;
+        }
+
+        if (null != tClass.getDeclaredAnnotation(ProcessExtraExpression.class)) {
+            return get(tClass, false, true);
+        }
+
         return get(tClass, false);
     }
 }
