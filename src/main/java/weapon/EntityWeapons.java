@@ -76,8 +76,8 @@ public class EntityWeapons {
         return res;
     }
 
-    public static Class<?> getListGenericType (Field listFeild) {
-        Type genericType = listFeild.getGenericType();
+    public static Class<?> getListGenericType (Field field) {
+        Type genericType = field.getGenericType();
         ParameterizedType parameterizedType = toParameterizedType(genericType);
         Type actualTypeArgument = parameterizedType.getActualTypeArguments()[0];
         try {
