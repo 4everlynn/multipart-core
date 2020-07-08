@@ -195,7 +195,10 @@ public class MultipartData extends Data implements IMultipart {
         for (String key : this.keySet()) {
             Object o = get(key);
             if (deep) {
-                if (MultipartData.class.isAssignableFrom(o.getClass())) {
+                if (null == o) {
+                    String targetKey = KeyWeapons.convert(key);
+                    data.put(targetKey, null);
+                } else if (MultipartData.class.isAssignableFrom(o.getClass())) {
                     String targetKey = KeyWeapons.convert(key);
                     data.put(targetKey, ((MultipartData) o).translate2Camel(true));
                 } else {
